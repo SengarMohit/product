@@ -5,6 +5,7 @@ import com.example.product.dto.UserRequestDTO;
 import com.example.product.dto.UserResponseDTO;
 import com.example.product.entity.User;
 import com.example.product.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class UserService {
 
-    @Autowired
+
     private UserRepository userRepository;
 
     public UserResponseDTO createUser(UserRequestDTO userDTO) {

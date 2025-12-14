@@ -4,6 +4,7 @@ import com.example.product.dto.UserRequestDTO;
 import com.example.product.dto.UserResponseDTO;
 import com.example.product.entity.User;
 import com.example.product.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,9 +12,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@AllArgsConstructor
 public class UserController {
 
-    @Autowired
     private UserService userService;
 
     @PostMapping
