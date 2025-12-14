@@ -1,5 +1,7 @@
 package com.example.product.controller;
 
+import com.example.product.dto.UserRequestDTO;
+import com.example.product.dto.UserResponseDTO;
 import com.example.product.entity.User;
 import com.example.product.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public UserResponseDTO createUser(@RequestBody UserRequestDTO user) {
         return userService.createUser(user);
     }
 

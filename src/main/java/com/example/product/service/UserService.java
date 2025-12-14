@@ -1,5 +1,8 @@
 package com.example.product.service;
 
+import com.example.product.dto.UserMapper;
+import com.example.product.dto.UserRequestDTO;
+import com.example.product.dto.UserResponseDTO;
 import com.example.product.entity.User;
 import com.example.product.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +17,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User createUser(User user) {
-        return userRepository.save(user);
+    public UserResponseDTO createUser(UserRequestDTO userDTO) {
+        User user = UserMapper.toEntity(userDTO);
+        User response =  userRepository.save(user);
+        return UserMapper.toResponse(response);
     }
 
     public List<User> getAllUsers() {
@@ -30,8 +35,7 @@ public class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found with id " + id));
 
-        user.setFirstName(userDetails.getFirstName());
-        user.setSecondName(userDetails.getSecondName());
+        user.setName(userDetails.getName());
         user.setEmail(userDetails.getEmail());
         user.setPhone(userDetails.getPhone());
         user.setMaritalStatus(userDetails.getMaritalStatus());
